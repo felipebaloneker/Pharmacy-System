@@ -4,6 +4,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Medicamento;
 import dao.MedicamentoDao;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 public class TelaCadastro extends javax.swing.JInternalFrame {
@@ -18,6 +21,16 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         readTable();
     }
     
+    //FUNCAO PARA APAGAR FILDSET
+    public void apagarTxt()
+    {
+        txtDesc.setText("");
+        txtPreco.setText("");
+        txtQtd.setText("");
+        txtFind.setText("");
+    }
+    
+    
     // FUNCAO PARA LER A TABELA
     public void readTable()
     {
@@ -31,7 +44,6 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         {
             model.addRow(new Object[]{
                 m.getId(),
-                m.getDescricao(),
                 m.getDescricao(),
                 m.getQtd(),
                 m.getPreco()
@@ -79,10 +91,20 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         btnExcluir.setBackground(new java.awt.Color(255, 255, 255));
         btnExcluir.setForeground(new java.awt.Color(110, 152, 200));
         btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setBackground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setForeground(new java.awt.Color(110, 152, 200));
         btnAtualizar.setText("ATUALIZAR");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setForeground(new java.awt.Color(110, 152, 200));
@@ -179,6 +201,16 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtMedicamentoMouseClicked(evt);
+            }
+        });
+        jtMedicamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtMedicamentoKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtMedicamento);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -210,7 +242,7 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
+    private void btnCadastraActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCadastraActionPerformed
         // ADICIONANDO COLUNAS AO BANCO
         Medicamento m = new Medicamento();
         MedicamentoDao dao = new MedicamentoDao();
@@ -223,9 +255,80 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         //INSERINDO NO BANCO
         dao.create(m);
         
-        // RELENDO TABELA APOS CADASTRAR
+        // RELENDO TABELA APOS CADASTRAR E APAGANDO FILDSET
         readTable();
+        apagarTxt();
+        
     }//GEN-LAST:event_btnCadastraActionPerformed
+
+    private void btnExcluirActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // EXCLUINDO COLUNAS DO BANCO
+        if(jtMedicamento.getSelectedRow() != -1)
+        {
+            // ADICIONANDO COLUNAS NO BANCO DE DADOS
+            Medicamento m = new Medicamento();
+            MedicamentoDao mdao= new MedicamentoDao();
+            
+            //PEGANDO VALORES NA TELA
+            m.setId((int)jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(), 0));
+            
+            //DELETANDO DO BANCO
+            mdao.delete(m);
+            
+            //APAGAR TEXTO NO FILDSET
+            apagarTxt();
+            
+            // RELENDO TABELA APOS EXCLUIR
+            readTable();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Selecione um medicamento para excluir!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void jtMedicamentoKeyPressed(KeyEvent evt) {//GEN-FIRST:event_jtMedicamentoKeyPressed
+        // PEGANDO VALORES DA COLUNA SELECIONADA PELO MOUSE
+        if(jtMedicamento.getSelectedRow() != -1)
+        {
+            txtDesc.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),1).toString());
+            txtQtd.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),2).toString());
+            txtPreco.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),3).toString());
+        }
+    }//GEN-LAST:event_jtMedicamentoKeyPressed
+
+    private void jtMedicamentoMouseClicked(MouseEvent evt) {//GEN-FIRST:event_jtMedicamentoMouseClicked
+        // PEGANDO VALORES DA COLUNA SELECIONADA PELO MOUSE
+        if(jtMedicamento.getSelectedRow() != -1)
+        {
+            txtDesc.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),1).toString());
+            txtQtd.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),2).toString());
+            txtPreco.setText(jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(),3).toString());
+        }
+    }//GEN-LAST:event_jtMedicamentoMouseClicked
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+       // ALTERANDO VALORES DA COLUNA
+       if(jtMedicamento.getSelectedRow() != -1)
+       {
+           // ATUALIZANDO COLUNAS
+           Medicamento m = new Medicamento();
+           MedicamentoDao mdao = new MedicamentoDao();
+           
+           // PEGANDO VALORES NA TELA
+           m.setDescricao(txtDesc.getText());
+           m.setQtd(Integer.parseInt(txtQtd.getText()));
+           m.setPreco(Double.parseDouble(txtPreco.getText()));
+           m.setId((int)jtMedicamento.getValueAt(jtMedicamento.getSelectedRow(), 0));
+           
+           // ATUALIZANDO BANCO
+           mdao.update(m);
+           
+           //APAGANDO FILDSET RELENDO TABELA
+           apagarTxt();
+           readTable();
+       }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

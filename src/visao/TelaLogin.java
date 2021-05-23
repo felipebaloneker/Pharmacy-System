@@ -1,5 +1,6 @@
 package visao;
 import dao.FuncionarioDao;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JFrame {
@@ -54,6 +55,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
+            }
+        });
 
         btnCancel.setBackground(new java.awt.Color(255, 255, 255));
         btnCancel.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -81,6 +87,11 @@ public class TelaLogin extends javax.swing.JFrame {
         lblSenha.setBackground(new java.awt.Color(255, 255, 255));
         lblSenha.setForeground(new java.awt.Color(143, 195, 255));
         lblSenha.setBorder(null);
+        lblSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lblSenhaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -201,6 +212,38 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Usuario ou Senha invalidos!!");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void lblSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblSenhaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            FuncionarioDao dao = new FuncionarioDao();
+            if(dao.check_login(lblUsuario.getText(),new String(lblSenha.getPassword())))
+            {
+                new TelaMenu().setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Usuario ou Senha invalidos!!");
+            }
+        }
+    }//GEN-LAST:event_lblSenhaKeyPressed
+
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            FuncionarioDao dao = new FuncionarioDao();
+            if(dao.check_login(lblUsuario.getText(),new String(lblSenha.getPassword())))
+            {
+                new TelaMenu().setVisible(true);
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Usuario ou Senha invalidos!!");
+            }
+        }
+    }//GEN-LAST:event_btnLoginKeyPressed
 
     public static void main(String args[]) {
         try {

@@ -4,8 +4,6 @@ import model.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class MedicamentoDao {
@@ -55,8 +53,8 @@ public class MedicamentoDao {
                 //  ADICIONANDO COLUNAS AO OBJETO
                 Medicamento medicamento = new Medicamento();
                 medicamento.setId(rs.getInt("id"));
-                medicamento.setDescricao(rs.getString("descricao"));
                 medicamento.setQtd(rs.getInt("qtd"));
+                medicamento.setDescricao(rs.getString("descricao"));
                 medicamento.setPreco(rs.getDouble("preco"));
                 
                medicamentos.add(medicamento);
@@ -73,4 +71,58 @@ public class MedicamentoDao {
         }
         return medicamentos;
     }
+    
+    // DELETANDO COLUNA NO BANCO
+    public void delete(Medicamento m)
+    {
+        // INICIANDO CONEXAO
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try 
+        {
+            stmt= con.prepareStatement("DELETE FROM medicamento WHERE id = ?");
+            stmt.setInt(1, m.getId());
+            
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Deletado com Sucesso!!");
+        }
+        catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null,"Erro ao Deletar!"+ex);
+        }
+        // FECHANDO CONEXAO
+        finally
+        {
+            ConnectionFactory.closeConnection(con,stmt);
+        }
+        
+    }
+    
+    // ATUALIZANDO BANCO
+    public void update(Medicamento m)
+    {
+        // INICIANDO CONEXAO
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt= con.prepareStatement("UPDATE medicamento SET descricao = ?, qtd = ?, preco = ? WHERE id = ?");
+            stmt.setString(1,m.getDescricao());
+            stmt.setInt(2, m.getQtd());
+            stmt.setDouble(3, m.getPreco());
+            stmt.setInt(4, m.getId());
+            
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Atualizado com Sucesso!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao Atualizar!"+ex);
+        }
+        // FECHANDO CONEXAO
+        finally
+        {
+            ConnectionFactory.closeConnection(con,stmt);
+        }
+    }
+    
 }

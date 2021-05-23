@@ -168,7 +168,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // SAINDO DO SISTEMA
-        System.exit(0);
+        new TelaLogin().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
