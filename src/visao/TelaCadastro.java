@@ -2,12 +2,12 @@ package visao;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Medicamento;
-import dao.MedicamentoDao;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import model.Medicamento;
+import dao.MedicamentoDao;
 
 public class TelaCadastro extends javax.swing.JInternalFrame {
     public TelaCadastro() {
@@ -49,6 +49,27 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
                 m.getPreco()
             });
         }
+    }
+    
+    // FUNCAO PARA BUSCAR MEDICAMENTO 
+    public void find(String desc)
+    {
+        DefaultTableModel model = (DefaultTableModel) jtMedicamento.getModel();
+        // IMPEDIR VIZUALIZACAO DUPLICADA
+        model.setNumRows(0);
+        MedicamentoDao mdao = new MedicamentoDao();
+        
+        //PERCORENDO A LISTA DE MEDICAMENTO
+        for(Medicamento m: mdao.find(desc))
+        {
+            model.addRow(new Object[]{
+                m.getId(),
+                m.getDescricao(),
+                m.getQtd(),
+                m.getPreco()
+            });
+        }
+        
     }
 
 
@@ -109,6 +130,11 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setForeground(new java.awt.Color(110, 152, 200));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         txtFind.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -329,6 +355,11 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
            readTable();
        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+         // ATUALIZANDO COLUNAS
+         find(txtFind.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

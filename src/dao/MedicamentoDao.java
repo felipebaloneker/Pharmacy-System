@@ -125,4 +125,47 @@ public class MedicamentoDao {
         }
     }
     
+    // BARRA DE PESQUISA
+    
+       public List<Medicamento> find(String desc)
+    {
+        // INICIANDO CONEXAO
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        // VARIAVEIS GUARDANDO VALORES
+        ResultSet rs = null;
+        List<Medicamento> medicamentos = new ArrayList<>(); // valores de todas as linhas
+        
+        try 
+        {
+            stmt = con.prepareStatement("SELECT * FROM medicamento WHERE descricao LIKE ?");
+            stmt.setString(1, "%"+desc+"%");
+            rs = stmt.executeQuery();
+            
+            while(rs.next())
+            {
+                //  ADICIONANDO COLUNAS AO OBJETO
+                Medicamento medicamento = new Medicamento();
+                medicamento.setId(rs.getInt("id"));
+                medicamento.setQtd(rs.getInt("qtd"));
+                medicamento.setDescricao(rs.getString("descricao"));
+                medicamento.setPreco(rs.getDouble("preco"));
+                
+               medicamentos.add(medicamento);
+                
+            }
+            
+        } 
+        catch (SQLException ex) 
+        {
+           JOptionPane.showMessageDialog(null,"Erro ao Buscar:"+ex);
+        }
+        // FECHANDO CONEXAO
+        finally
+        {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return medicamentos;
+    }
 }
