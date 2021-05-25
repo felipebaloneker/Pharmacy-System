@@ -1,6 +1,8 @@
 package visao;
 
+import connection.ConnectionFactory;
 import java.awt.CardLayout;
+import java.sql.Connection;
 
 public class TelaMenu extends javax.swing.JFrame {
     public TelaMenu() {
@@ -16,8 +18,8 @@ public class TelaMenu extends javax.swing.JFrame {
         jCard2 = new javax.swing.JPanel();
         jCard3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnRelatorio1 = new javax.swing.JButton();
-        btnRelatorio2 = new javax.swing.JButton();
+        btnRMedic = new javax.swing.JButton();
+        btnRFunc = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
@@ -78,25 +80,25 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visao/icons/relatorio.png"))); // NOI18N
 
-        btnRelatorio1.setBackground(new java.awt.Color(248, 176, 30));
-        btnRelatorio1.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
-        btnRelatorio1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRelatorio1.setText("RELATORIO MEDICAMENTO");
-        btnRelatorio1.setBorder(null);
-        btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+        btnRMedic.setBackground(new java.awt.Color(248, 176, 30));
+        btnRMedic.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
+        btnRMedic.setForeground(new java.awt.Color(255, 255, 255));
+        btnRMedic.setText("RELATORIO MEDICAMENTO");
+        btnRMedic.setBorder(null);
+        btnRMedic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRelatorio1ActionPerformed(evt);
+                btnRMedicActionPerformed(evt);
             }
         });
 
-        btnRelatorio2.setBackground(new java.awt.Color(248, 176, 30));
-        btnRelatorio2.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
-        btnRelatorio2.setForeground(new java.awt.Color(255, 255, 255));
-        btnRelatorio2.setText("RELATORIO FUNCIONARIO");
-        btnRelatorio2.setBorder(null);
-        btnRelatorio2.addActionListener(new java.awt.event.ActionListener() {
+        btnRFunc.setBackground(new java.awt.Color(248, 176, 30));
+        btnRFunc.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
+        btnRFunc.setForeground(new java.awt.Color(255, 255, 255));
+        btnRFunc.setText("RELATORIO FUNCIONARIO");
+        btnRFunc.setBorder(null);
+        btnRFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRelatorio2ActionPerformed(evt);
+                btnRFuncActionPerformed(evt);
             }
         });
 
@@ -110,17 +112,17 @@ public class TelaMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCard3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRelatorio2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRelatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRMedic, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(126, 126, 126))
         );
         jCard3Layout.setVerticalGroup(
             jCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCard3Layout.createSequentialGroup()
                 .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(btnRelatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRMedic, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRelatorio2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -249,18 +251,27 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
-                // MUDANDO PARA O CARD COM CADASTRO
+         // MUDANDO PARA O CARD COM RELATORIO
         CardLayout cl = (CardLayout) jPrincipal.getLayout();
         cl.show(jPrincipal, "card3");
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
-    private void btnRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRelatorio1ActionPerformed
+    private void btnRMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRMedicActionPerformed
+        // IMPRIMINDO RELATORIO
+        Connection con = ConnectionFactory.getConnection();
+        String src = "RelatorioMedicamento.jasper";
+        
+        JasperPrint jasperPrint = null;
+        jasperPrint = JasperFillManager.fillReport(src, null, con);
+        
+        JasperViewer view = new JasperViewer(jasperPrint,false);
+        
+        view.setVisible(true);
+    }//GEN-LAST:event_btnRMedicActionPerformed
 
-    private void btnRelatorio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio2ActionPerformed
+    private void btnRFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRFuncActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRelatorio2ActionPerformed
+    }//GEN-LAST:event_btnRFuncActionPerformed
 
 
     public static void main(String args[]) {
@@ -273,9 +284,9 @@ public class TelaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnRFunc;
+    private javax.swing.JButton btnRMedic;
     private javax.swing.JButton btnRelatorio;
-    private javax.swing.JButton btnRelatorio1;
-    private javax.swing.JButton btnRelatorio2;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSobre;
     private javax.swing.JPanel jCard1;
