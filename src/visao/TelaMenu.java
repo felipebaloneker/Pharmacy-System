@@ -14,11 +14,15 @@ public class TelaMenu extends javax.swing.JFrame {
         jCard1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jCard2 = new javax.swing.JPanel();
+        jCard3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        btnRelatorio1 = new javax.swing.JButton();
+        btnRelatorio2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         btnSobre = new javax.swing.JButton();
-        btnSobre1 = new javax.swing.JButton();
+        btnRelatorio = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +73,60 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jPrincipal.add(jCard2, "card2");
 
+        jCard3.setBackground(new java.awt.Color(255, 255, 255));
+        jCard3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visao/icons/relatorio.png"))); // NOI18N
+
+        btnRelatorio1.setBackground(new java.awt.Color(248, 176, 30));
+        btnRelatorio1.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
+        btnRelatorio1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRelatorio1.setText("RELATORIO MEDICAMENTO");
+        btnRelatorio1.setBorder(null);
+        btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorio1ActionPerformed(evt);
+            }
+        });
+
+        btnRelatorio2.setBackground(new java.awt.Color(248, 176, 30));
+        btnRelatorio2.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
+        btnRelatorio2.setForeground(new java.awt.Color(255, 255, 255));
+        btnRelatorio2.setText("RELATORIO FUNCIONARIO");
+        btnRelatorio2.setBorder(null);
+        btnRelatorio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorio2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jCard3Layout = new javax.swing.GroupLayout(jCard3);
+        jCard3.setLayout(jCard3Layout);
+        jCard3Layout.setHorizontalGroup(
+            jCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jCard3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCard3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRelatorio2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRelatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(126, 126, 126))
+        );
+        jCard3Layout.setVerticalGroup(
+            jCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCard3Layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(btnRelatorio1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRelatorio2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPrincipal.add(jCard3, "card3");
+
         jPanel2.setBackground(new java.awt.Color(143, 195, 255));
         jPanel2.setForeground(new java.awt.Color(66, 52, 152));
 
@@ -97,10 +155,15 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
-        btnSobre1.setBackground(new java.awt.Color(255, 255, 255));
-        btnSobre1.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
-        btnSobre1.setForeground(new java.awt.Color(143, 195, 255));
-        btnSobre1.setText("RELATORIO");
+        btnRelatorio.setBackground(new java.awt.Color(255, 255, 255));
+        btnRelatorio.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
+        btnRelatorio.setForeground(new java.awt.Color(143, 195, 255));
+        btnRelatorio.setText("RELATORIO");
+        btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorioActionPerformed(evt);
+            }
+        });
 
         btnCadastro.setBackground(new java.awt.Color(255, 255, 255));
         btnCadastro.setFont(new java.awt.Font(".SF NS Text", 1, 13)); // NOI18N
@@ -121,7 +184,7 @@ public class TelaMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnSair, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSobre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSobre1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRelatorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
@@ -134,7 +197,7 @@ public class TelaMenu extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSobre1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,6 +248,20 @@ public class TelaMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCadastroActionPerformed
 
+    private void btnRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioActionPerformed
+                // MUDANDO PARA O CARD COM CADASTRO
+        CardLayout cl = (CardLayout) jPrincipal.getLayout();
+        cl.show(jPrincipal, "card3");
+    }//GEN-LAST:event_btnRelatorioActionPerformed
+
+    private void btnRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRelatorio1ActionPerformed
+
+    private void btnRelatorio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRelatorio2ActionPerformed
+
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -196,12 +273,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnRelatorio;
+    private javax.swing.JButton btnRelatorio1;
+    private javax.swing.JButton btnRelatorio2;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSobre;
-    private javax.swing.JButton btnSobre1;
     private javax.swing.JPanel jCard1;
     private javax.swing.JPanel jCard2;
+    private javax.swing.JPanel jCard3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JLabel lblWelcome;
