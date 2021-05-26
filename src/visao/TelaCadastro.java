@@ -100,36 +100,40 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(215, 233, 255));
 
-        btnCadastra.setBackground(new java.awt.Color(255, 255, 255));
-        btnCadastra.setForeground(new java.awt.Color(110, 152, 200));
+        btnCadastra.setBackground(new java.awt.Color(248, 176, 30));
+        btnCadastra.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastra.setText("CADASTRAR");
+        btnCadastra.setBorderPainted(false);
         btnCadastra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastraActionPerformed(evt);
             }
         });
 
-        btnExcluir.setBackground(new java.awt.Color(255, 255, 255));
-        btnExcluir.setForeground(new java.awt.Color(110, 152, 200));
+        btnExcluir.setBackground(new java.awt.Color(248, 176, 30));
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("EXCLUIR");
+        btnExcluir.setBorderPainted(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
-        btnAtualizar.setBackground(new java.awt.Color(255, 255, 255));
-        btnAtualizar.setForeground(new java.awt.Color(110, 152, 200));
+        btnAtualizar.setBackground(new java.awt.Color(248, 176, 30));
+        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setText("ATUALIZAR");
+        btnAtualizar.setBorderPainted(false);
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizarActionPerformed(evt);
             }
         });
 
-        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setForeground(new java.awt.Color(110, 152, 200));
+        btnBuscar.setBackground(new java.awt.Color(248, 176, 30));
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setBorderPainted(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -137,12 +141,16 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         });
 
         txtFind.setBackground(new java.awt.Color(255, 255, 255));
+        txtFind.setBorder(null);
 
         txtPreco.setBackground(new java.awt.Color(255, 255, 255));
+        txtPreco.setBorder(null);
 
         txtQtd.setBackground(new java.awt.Color(255, 255, 255));
+        txtQtd.setBorder(null);
 
         txtDesc.setBackground(new java.awt.Color(255, 255, 255));
+        txtDesc.setBorder(null);
 
         jLabel1.setForeground(new java.awt.Color(110, 152, 200));
         jLabel1.setText("Descrição");
@@ -247,7 +255,7 @@ public class TelaCadastro extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

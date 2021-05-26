@@ -246,11 +246,16 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblWelcome1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblWelcome" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="btnSair" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnSobre" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnRelatorio" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnCadastro" alignment="0" pref="180" max="32767" attributes="0"/>
-                      <Component id="lblWelcome" min="-2" pref="166" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
@@ -260,7 +265,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="lblWelcome" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblWelcome" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="lblWelcome1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   <Component id="btnCadastro" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -283,7 +291,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Bem Vindo"/>
+            <Property name="text" type="java.lang.String" value="PHARMACY"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSair">
@@ -360,6 +368,17 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblWelcome1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Dev"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -21,9 +21,9 @@ public class MedicamentoDao {
             stmt.setDouble(3, m.getPreco());
             
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Salvo com Sucesso!!");
+            JOptionPane.showMessageDialog(null,"Cadastrado com Sucesso!!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao Salvar!"+ex);
+            JOptionPane.showMessageDialog(null,"Erro ao Cadastrar!"+ex);
         }
         // FECHANDO CONEXAO
         finally

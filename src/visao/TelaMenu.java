@@ -3,6 +3,12 @@ package visao;
 import connection.ConnectionFactory;
 import java.awt.CardLayout;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class TelaMenu extends javax.swing.JFrame {
     public TelaMenu() {
@@ -26,6 +32,7 @@ public class TelaMenu extends javax.swing.JFrame {
         btnSobre = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
+        lblWelcome1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,7 +141,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
         lblWelcome.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
-        lblWelcome.setText("Bem Vindo");
+        lblWelcome.setText("PHARMACY");
 
         btnSair.setBackground(new java.awt.Color(143, 195, 255));
         btnSair.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -177,6 +184,10 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblWelcome1.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcome1.setText("Dev");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -184,18 +195,24 @@ public class TelaMenu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblWelcome)
+                        .addGap(12, 12, 12))
                     .addComponent(btnSair, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSobre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRelatorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,7 +279,11 @@ public class TelaMenu extends javax.swing.JFrame {
         String src = "RelatorioMedicamento.jasper";
         
         JasperPrint jasperPrint = null;
-        jasperPrint = JasperFillManager.fillReport(src, null, con);
+        try {
+            jasperPrint = JasperFillManager.fillReport(src, null, con);
+        } catch (JRException ex) {
+            Logger.getLogger(TelaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         JasperViewer view = new JasperViewer(jasperPrint,false);
         
@@ -270,7 +291,20 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRMedicActionPerformed
 
     private void btnRFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRFuncActionPerformed
-        // TODO add your handling code here:
+        // IMPRIMINDO RELATORIO
+        Connection con = ConnectionFactory.getConnection();
+        String src = "RelatorioFuncionario.jasper";
+        
+        JasperPrint jasperPrint = null;
+        try {
+            jasperPrint = JasperFillManager.fillReport(src, null, con);
+        } catch (JRException ex) {
+            Logger.getLogger(TelaMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer view = new JasperViewer(jasperPrint,false);
+        
+        view.setVisible(true);
     }//GEN-LAST:event_btnRFuncActionPerformed
 
 
@@ -297,5 +331,6 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPrincipal;
     private javax.swing.JLabel lblWelcome;
+    private javax.swing.JLabel lblWelcome1;
     // End of variables declaration//GEN-END:variables
 }
