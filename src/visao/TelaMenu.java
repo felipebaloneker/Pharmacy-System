@@ -274,17 +274,21 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
     private void btnRMedicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRMedicActionPerformed
-        // IMPRIMINDO RELATORIO
+    // IMPRIMINDO RELATORIO
+        // ABRINDO CONEXAO
         Connection con = ConnectionFactory.getConnection();
+        
+        // LOCAL DO MODELO
         String src = "RelatorioMedicamento.jasper";
         
         JasperPrint jasperPrint = null;
         try {
+            // LENDO BANCO DE DADOS
             jasperPrint = JasperFillManager.fillReport(src, null, con);
         } catch (JRException ex) {
             Logger.getLogger(TelaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        // MOSTRANDO MODELO NA TELA
         JasperViewer view = new JasperViewer(jasperPrint,false);
         
         view.setVisible(true);
